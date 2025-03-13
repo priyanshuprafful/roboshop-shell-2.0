@@ -8,6 +8,7 @@ useradd roboshop &>>/tmp/roboshop.log
 
 
 echo -e "\e[31mCreating application directory \e[0m"
+rm -rf /app 
 mkdir /app &>>/tmp/roboshop.log
 
 

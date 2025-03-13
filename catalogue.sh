@@ -9,7 +9,7 @@ dnf install nodejs -y &>>/tmp/roboshop.log
 
 
 echo -e "\e[31mAdding Roboshop User or application user \e[0m"
-useradd roboshop
+useradd roboshop &>>/tmp/roboshop.log
 
 
 
@@ -33,8 +33,8 @@ echo -e "\e[31mUpdating the configuration \e[0m"
 systemctl daemon-reload
 
 echo -e "\e[31mStart Catalogue Service \e[0m"
-systemctl enable catalogue
-systemctl restart catalogue
+systemctl enable catalogue &>>/tmp/roboshop.log
+systemctl restart catalogue &>>/tmp/roboshop.log
 
 
 
@@ -44,11 +44,11 @@ systemctl restart catalogue
 
 
 echo -e "\e[31mCopy MongoDB repo file \e[0m"
-cp mongodb.repo /etc/yum.repos.d/mongo.repo
+cp /root/roboshop-shell-2.0/mongodb.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[31mInstalling MongoDB server \e[0m"
 dnf install mongodb-org-shell -y &>>/tmp/roboshop.log
 
 
 echo -e "\e[31mLoad Schema \e[0m"
-mongo --host mongodb-dev.saraldevops.site </app/schema/catalogue.js
+mongo --host mongodb-dev.saraldevops.site </app/schema/catalogue.js &>>/tmp/roboshop.log

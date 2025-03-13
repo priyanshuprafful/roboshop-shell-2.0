@@ -12,7 +12,7 @@ cd /usr/share/nginx/html
 unzip /tmp/frontend.zip &>>/tmp/roboshop.log
 
 echo -e "\e[31mUpdate Frontend Configuration\e[0m"
-cp roboshop.conf /etc/nginx/default.d/roboshop.conf
+cp /root/roboshop-shell-2.0/roboshop.conf /etc/nginx/default.d/roboshop.conf
 
 
 

@@ -14,7 +14,7 @@ useradd roboshop
 
 
 echo -e "\e[31mCreating App Directory \e[0m"
-rm -rf /app # to delete the old content , if present 
+rm -rf /app # to delete the old content , if present
 mkdir /app
 
 echo -e "\e[31mDownload and Extract Catalogue Content or application content \e[0m"
@@ -22,14 +22,14 @@ curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue
 cd /app
 unzip /tmp/catalogue.zip &>>/tmp/roboshop.log
 
-echo -e "\e[3131mInstalling Dependencies \e[0m"
+echo -e "\e[31mInstalling Dependencies \e[0m"
 cd /app
 npm install &>>/tmp/roboshop.log
 
 echo -e "\e[31mCopying Updated catalogue service File / Setup SystemD service \e[0m"
-cp catalogue.service /etc/systemd/system/catalogue.service
+cp /root/roboshop-shell-2.0/catalogue.service /etc/systemd/system/catalogue.service
 
-echo -e "\e[31mupdating the configuration \e[0m"
+echo -e "\e[31mUpdating the configuration \e[0m"
 systemctl daemon-reload
 
 echo -e "\e[31mStart Catalogue Service \e[0m"

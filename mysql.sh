@@ -2,7 +2,7 @@ echo -e "\e[31mDisable Mysql module \e[0m"
 dnf module disable mysql -y &>>/tmp/roboshop.log
 
 echo -e "\e[31mCopy Repo File \e[0m"
-cp /root/roboshop-shell-2.0/mysql.repo /etc/systemd/system/mysql.repo &>>/tmp/roboshop.log
+cp /root/roboshop-shell-2.0/mysql.repo /etc/yum.repos.d/mysql.repo &>>/tmp/roboshop.log
 
 echo -e "\e[31mInstall Mysql server \e[0m"
 dnf install mysql-community-server -y &>>/tmp/roboshop.log

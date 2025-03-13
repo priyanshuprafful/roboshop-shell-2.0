@@ -10,7 +10,7 @@ dnf install mysql-community-server -y &>>/tmp/roboshop.log
 
 echo -e "\e[31mStarting MySql \e[0m"
 systemctl enable mysqld &>>/tmp/roboshop.log
-systemctl start mysqld &>>/tmp/roboshop.log
+systemctl restart mysqld &>>/tmp/roboshop.log
 
 
 echo -e "\e[31mSetup and start Mysql server  \e[0m"

@@ -27,6 +27,8 @@ mvn clean package &>>/tmp/roboshop.log
 mv target/shipping-1.0.jar shipping.jar &>>/tmp/roboshop.log
 
 
+echo -e "\e[31mSetup SystemD service file\e[0m"
+cp /root/roboshop-shell-2.0/shipping.service /etc/systemd/system/shipping.service &>>/tmp/roboshop.log
 
 
 
@@ -39,5 +41,6 @@ mysql -h mysql-dev.saraldevops.site -uroot -pRoboShop@1 < /app/schema/shipping.s
 
 echo -e "\e[31mStart Shipping Service\e[0m"
 systemctl daemon-reload &>>/tmp/roboshop.log
+
 systemctl enable shipping &>>/tmp/roboshop.log
 systemctl restart shipping &>>/tmp/roboshop.log

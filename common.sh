@@ -4,7 +4,10 @@ log_file="/tmp/roboshop.log" # here if special character are there then it will 
 app_path="/app"
 app_presetup(){
     echo -e "${color}Adding Roboshop User or application user ${nocolor}"
-    useradd roboshop &>>${log_file}
+    id roboshop &>>${log_file}
+    if [ $? -eq 1 ]; then # that means the user is not already there
+      useradd roboshop &>>${log_file}
+    fi
     if [ $? -eq 0 ]; then
       echo "SUCCESS"
     else

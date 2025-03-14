@@ -40,6 +40,7 @@ systemd_setup() {
 
   echo -e "${color}Setup SystemD service file${nocolor}"
   cp /root/roboshop-shell-2.0/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
+  sed -i -e "s/roboshop_app_password/${roboshop_app_password}/" /root/roboshop-shell-2.0/${component}.service
   status_check $?
 
   echo -e "${color}Start ${component} Service${nocolor}"
@@ -125,6 +126,6 @@ python() {
   pip3.6 install -r requirements.txt &>>${log_file}
   status_check $?
 
-  sed -i -e "s/roboshop_app_password/$1/" /root/roboshop-shell-2.0/${component}.service
+
   systemd_setup
 }

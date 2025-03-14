@@ -1,3 +1,3 @@
-source comman.sh
+source common.sh
 component=payment
-python
+python 

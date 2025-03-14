@@ -1,40 +1,43 @@
-echo -e "\e[31mDisable NodeJS module \e[0m"
-dnf module disable nodejs -y &>>/tmp/roboshop.log
+source common.sh
+component=cart
 
-echo -e "\e[31mEnabling NodeJS 18 module \e[0m"
-dnf module enable nodejs:18 -y &>>/tmp/roboshop.log
+echo -e "${color}Disable NodeJS module ${nocolor}"
+dnf module disable nodejs -y &>>${log_file}
 
-echo -e "\e[31mInstalling NodeJS \e[0m"
-dnf install nodejs -y &>>/tmp/roboshop.log
+echo -e "${color}Enabling NodeJS 18 module ${nocolor}"
+dnf module enable nodejs:18 -y &>>${log_file}
 
-
-echo -e "\e[31mAdding Roboshop cart or application cart \e[0m"
-useradd roboshop &>>/tmp/roboshop.log
-
+echo -e "${color}Installing NodeJS ${nocolor}"
+dnf install nodejs -y &>>${log_file}
 
 
-echo -e "\e[31mCreating App Directory \e[0m"
-rm -rf /app # to delete the old content , if present
-mkdir /app
+echo -e "${color}Adding Roboshop ${component} or application ${component} ${nocolor}"
+useradd roboshop &>>${log_file}
 
-echo -e "\e[31mDownload and Extract cart Content or application content \e[0m"
-curl -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart.zip &>>/tmp/roboshop.log
-cd /app
-unzip /tmp/cart.zip &>>/tmp/roboshop.log
 
-echo -e "\e[31mInstalling Dependencies \e[0m"
-cd /app
-npm install &>>/tmp/roboshop.log
 
-echo -e "\e[31mCopying Updated cart service File / Setup SystemD service \e[0m"
-cp /root/roboshop-shell-2.0/cart.service /etc/systemd/system/cart.service
+echo -e "${color}Creating App Directory ${nocolor}"
+rm -rf ${app_path} # to delete the old content , if present
+mkdir ${app_path}
 
-echo -e "\e[31mUpdating the configuration \e[0m"
+echo -e "${color}Download and Extract ${component} Content or application content ${nocolor}"
+curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${log_file}
+cd ${app_path}
+unzip /tmp/${component}.zip &>>${log_file}
+
+echo -e "${color}Installing Dependencies ${nocolor}"
+cd ${app_path}
+npm install &>>${log_file}
+
+echo -e "${color}Copying Updated ${component} service File / Setup SystemD service ${nocolor}"
+cp /root/roboshop-shell-2.0/${component}.service /etc/systemd/system/${component}.service
+
+echo -e "${color}Updating the configuration ${nocolor}"
 systemctl daemon-reload
 
-echo -e "\e[31mStart cart Service \e[0m"
-systemctl enable cart &>>/tmp/roboshop.log
-systemctl restart cart &>>/tmp/roboshop.log
+echo -e "${color}Start ${component} Service ${nocolor}"
+systemctl enable ${component} &>>${log_file}
+systemctl restart ${component} &>>${log_file}
 
 
 

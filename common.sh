@@ -45,3 +45,15 @@ nodejs() {
 
 
 }
+
+mongo_schema_setup() {
+  echo -e "\e[31mCopy MongoDB repo file \e[0m"
+  cp /root/roboshop-shell-2.0/mongodb.repo /etc/yum.repos.d/mongo.repo
+
+  echo -e "\e[31mInstalling MongoDB server \e[0m"
+  dnf install mongodb-org-shell -y &>>/tmp/roboshop.log
+
+
+  echo -e "\e[31mLoad Schema \e[0m"
+  mongo --host mongodb-dev.saraldevops.site </app/schema/user.js &>>/tmp/roboshop.log
+}

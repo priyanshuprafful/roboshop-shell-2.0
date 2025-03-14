@@ -92,11 +92,20 @@ maven(){
 
 
 
-
-
-
   mysql_schema_setup
   systemd_setup
 
+}
 
+python() {
+  echo -e "${color}Install Python 3.6 ${nocolor}"
+  dnf install python36 gcc python3-devel -y &>>${log_file}
+
+  app_presetup
+
+  echo -e "${color}Installing Python Dependencies${nocolor}"
+  cd /app
+  pip3.6 install -r requirements.txt &>>${log_file}
+
+  systemd_setup
 }

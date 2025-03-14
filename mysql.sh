@@ -14,5 +14,5 @@ systemctl restart mysqld &>>/tmp/roboshop.log
 
 
 echo -e "\e[31mSetup and start Mysql server  \e[0m"
-mysql_secure_installation --set-root-pass RoboShop@1 &>>/tmp/roboshop.log
+mysql_secure_installation --set-root-pass $1 &>>/tmp/roboshop.log
 

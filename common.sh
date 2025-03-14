@@ -108,7 +108,7 @@ python() {
 
   app_presetup
 
-  echo -e "${color}Installing Python Dependencies${nocolor}"
+  echo -e "${color}Installing Application Dependencies${nocolor}"
   cd /app
   pip3.6 install -r requirements.txt &>>${log_file}
   echo $?

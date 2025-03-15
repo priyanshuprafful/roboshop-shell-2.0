@@ -1,12 +1,18 @@
-echo -e "\e[31mEnable Redis module \e[0m"
+source common.sh
+
+echo -e "${color}Enable Redis module ${nocolor}"
 dnf module enable redis:6 -y &>>/tmp/roboshop.log
+status_check $?
 
-echo -e "\e[31mInstalling Redis \e[0m"
+echo -e "${color}Installing Redis ${nocolor}"
 dnf install redis -y &>>/tmp/roboshop.log
+status_check $?
 
-echo -e "\e[31mUpdate redis listen address \e[0m"
+echo -e "${color}Update redis listen address ${nocolor}"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf &>>/tmp/roboshop.log
+status_check $?
 
-echo -e "\e[31mStart redis service \e[0m"
+echo -e "${color}Start redis service ${nocolor}"
 systemctl enable redis &>>/tmp/roboshop.log
 systemctl restart redis &>>/tmp/roboshop.log
+status_check $?

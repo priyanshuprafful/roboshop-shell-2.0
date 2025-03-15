@@ -1,13 +1,19 @@
-echo -e "\e[31mCopy MongoDB repo file \e[0m"
+source common.sh 
+
+echo -e "${color}Copy MongoDB repo file ${nocolor}"
 cp /root/roboshop-shell-2.0/mongodb.repo /etc/yum.repos.d/mongo.repo
+stat_check $?
 
-echo -e "\e[31mInstalling MongoDB Server\e[0m"
+echo -e "${color}Installing MongoDB Server${nocolor}"
 dnf install mongodb-org -y &>>/tmp/roboshop.log
+stat_check $?
 
-echo -e "\e[31mModifying the Config File or update the listen address   \e[0m"
+echo -e "${color}Modifying the Config File or update the listen address   ${nocolor}"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
+stat_check $?
 
-echo -e "\e[31mStart MongoDB service\e[0m"
+echo -e "${color}Start MongoDB service${nocolor}"
 systemctl enable mongod
 systemctl restart mongod
+stat_check $?
 

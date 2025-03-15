@@ -62,12 +62,15 @@ systemd_setup() {
 nodejs() {
   echo -e "${color}Disable NodeJS module ${nocolor}"
   dnf module disable nodejs -y &>>${log_file}
+  status_check $?
 
   echo -e "${color}Enabling NodeJS 18 module ${nocolor}"
   dnf module enable nodejs:18 -y &>>${log_file}
+  status_check $?
 
   echo -e "${color}Installing NodeJS ${nocolor}"
   dnf install nodejs -y &>>${log_file}
+  status_check $?
 
 
   app_presetup
@@ -76,6 +79,7 @@ nodejs() {
   echo -e "${color}Installing Dependencies ${nocolor}"
   cd ${app_path}
   npm install &>>${log_file}
+  status_check $?
 
   systemd_setup
 
@@ -85,27 +89,33 @@ nodejs() {
 mongo_schema_setup() {
   echo -e "${color}Copy MongoDB repo file ${nocolor}"
   cp /root/roboshop-shell-2.0/mongodb.repo /etc/yum.repos.d/mongo.repo
+  status_check $?
 
   echo -e "${color}Installing MongoDB server ${nocolor}"
   dnf install mongodb-org-shell -y &>>${log_file}
+  status_check $?
 
 
   echo -e "${color}Load Schema ${nocolor}"
   mongo --host mongodb-dev.saraldevops.site <${app_path}/schema/user.js &>>${log_file}
+  status_check $?
+
 }
 mysql_schema_setup(){
    echo -e "${color}Install MYSQL Client${nocolor}"
    cp /root/roboshop-shell-2.0/mysql.repo /etc/yum.repos.d/mysql.repo &>>${log_file}
    dnf install mysql -y &>>${log_file}
+   status_check $?
 
    echo -e "${color} Load Schema${nocolor}"
    mysql -h mysql-dev.saraldevops.site -uroot -pRoboShop@1 < ${app_path}/schema/${component}.sql &>>${log_file}
+   status_check $?
 }
 
 maven(){
   echo -e "${color}Install Maven ${nocolor}"
   dnf install maven -y &>>${log_file}
-
+  status_check $?
 
   app_presetup
 
@@ -113,7 +123,7 @@ maven(){
   echo -e "${color} Download Application Dependencies${nocolor}"
   mvn clean package &>>${log_file}
   mv target/${component}-1.0.jar ${component}.jar &>>${log_file}
-
+  status_check $?
 
 
   mysql_schema_setup

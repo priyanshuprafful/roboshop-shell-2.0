@@ -1,4 +1,5 @@
-source common.sh 
+source common.sh
+component=frontend
 
 echo -e "${color}Installing Nginx Server${nocolor}"
 dnf install nginx -y &>>${log_file}

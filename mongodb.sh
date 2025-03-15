@@ -1,4 +1,5 @@
-source common.sh 
+source common.sh
+component=mongodb
 
 echo -e "${color}Copy MongoDB repo file ${nocolor}"
 cp /root/roboshop-shell-2.0/mongodb.repo /etc/yum.repos.d/mongo.repo

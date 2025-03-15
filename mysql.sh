@@ -1,4 +1,5 @@
 source common.sh
+component=mysql
 
 echo -e "${color}Disable Mysql module ${nocolor}"
 dnf module disable mysql -y &>>/tmp/roboshop.log

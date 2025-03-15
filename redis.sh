@@ -1,4 +1,5 @@
 source common.sh
+component=redis
 
 echo -e "${color}Enable Redis module ${nocolor}"
 dnf module enable redis:6 -y &>>/tmp/roboshop.log

@@ -4,7 +4,7 @@ log_file="/tmp/roboshop.log" # here if special character are there then it will 
 app_path="/app"
 user_id=$(id -u)
 
-
+sudo set-hostname ${component}
 
 if [ ${user_id} -ne 0 ]; then
   echo "Script should run as root user or as sudo"

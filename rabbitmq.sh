@@ -1,4 +1,5 @@
 source common.sh
+component=mysql
 
 echo -e "${color}Configure Erlang Repos${nocolor}"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>>/tmp/roboshop.log

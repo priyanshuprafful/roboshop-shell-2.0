@@ -6,7 +6,7 @@ user_id=$(id -u)
 
 
 
-if [ $(user_id) -ne 0 ]; then
+if [ ${user_id} -ne 0 ]; then
   echo "Script should run as root user or as sudo"
   exit 1
 fi

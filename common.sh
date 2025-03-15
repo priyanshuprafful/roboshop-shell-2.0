@@ -100,7 +100,7 @@ mongo_schema_setup() {
 
 
   echo -e "${color}Load Schema ${nocolor}"
-  mongo --host mongodb-dev.saraldevops.site <${app_path}/schema/user.js &>>${log_file}
+  mongo --host mongodb-dev.saraldevops.site <${app_path}/schema/${component}.js &>>${log_file}
   status_check $?
 
 }

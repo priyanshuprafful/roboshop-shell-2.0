@@ -111,7 +111,7 @@ mysql_schema_setup(){
    status_check $?
 
    echo -e "${color} Load Schema${nocolor}"
-   mysql -h mysql-dev.saraldevops.site -uroot -pRoboShop@1 < ${app_path}/schema/${component}.sql &>>${log_file}
+   mysql -h mysql-dev.saraldevops.site -uroot -p${mysql_root_password} < ${app_path}/schema/${component}.sql &>>${log_file}
    status_check $?
 }
 

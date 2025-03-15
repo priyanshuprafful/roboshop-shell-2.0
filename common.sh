@@ -1,11 +1,11 @@
-sudo set-hostname ${component}
+#sudo set-hostname ${component}
 color="\e[32m"
 nocolor="\e[0m" # It disables the color
 log_file="/tmp/roboshop.log" # here if special character are there then it will ignore the double quote
 app_path="/app"
 user_id=$(id -u)
 
-sudo set-hostname ${component}
+#sudo set-hostname ${component}
 
 if [ ${user_id} -ne 0 ]; then
   echo "Script should run as root user or as sudo"

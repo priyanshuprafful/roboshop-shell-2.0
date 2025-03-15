@@ -6,7 +6,7 @@ dnf module disable mysql -y &>>/tmp/roboshop.log
 status_check $?
 
 echo -e "${color}Copy Repo File ${nocolor}"
-cp /root/roboshop-shell-2.0/mysql.repo /etc/yum.repos.d/mysql.repo &>>/tmp/roboshop.log
+cp /home/centos/roboshop-shell-2.0/mysql.repo /etc/yum.repos.d/mysql.repo &>>/tmp/roboshop.log
 status_check $?
 
 echo -e "${color}Install Mysql server ${nocolor}"

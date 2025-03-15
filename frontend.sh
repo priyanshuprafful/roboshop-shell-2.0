@@ -19,7 +19,7 @@ unzip /tmp/frontend.zip &>>${log_file}
 status_check $?
 
 echo -e "${color}Update Frontend Configuration${nocolor}"
-cp /root/roboshop-shell-2.0/roboshop.conf /etc/nginx/default.d/roboshop.conf
+cp /home/centos/roboshop-shell-2.0/roboshop.conf /etc/nginx/default.d/roboshop.conf
 status_check $?
 
 

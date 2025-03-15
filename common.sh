@@ -49,7 +49,7 @@ app_presetup(){
 systemd_setup() {
 
   echo -e "${color}Setup SystemD service file${nocolor}"
-  cp /root/roboshop-shell-2.0/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
+  cp /home/centos/roboshop-shell-2.0/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
   sed -i -e "s/roboshop_app_password/${roboshop_app_password}/" /etc/systemd/system/${component}.service
   status_check $?
 
@@ -91,7 +91,7 @@ nodejs() {
 
 mongo_schema_setup() {
   echo -e "${color}Copy MongoDB repo file ${nocolor}"
-  cp /root/roboshop-shell-2.0/mongodb.repo /etc/yum.repos.d/mongo.repo
+  cp /home/centos/roboshop-shell-2.0/mongodb.repo /etc/yum.repos.d/mongo.repo
   status_check $?
 
   echo -e "${color}Installing MongoDB server ${nocolor}"
@@ -106,7 +106,7 @@ mongo_schema_setup() {
 }
 mysql_schema_setup(){
    echo -e "${color}Install MYSQL Client${nocolor}"
-   cp /root/roboshop-shell-2.0/mysql.repo /etc/yum.repos.d/mysql.repo &>>${log_file}
+   cp /home/centos/roboshop-shell-2.0/mysql.repo /etc/yum.repos.d/mysql.repo &>>${log_file}
    dnf install mysql -y &>>${log_file}
    status_check $?
 

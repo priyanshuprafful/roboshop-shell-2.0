@@ -1,4 +1,4 @@
-echo -e "\e[33mCopying MongoDB Repo \e[0m"
+printf "\e[33mCopying MongoDB Repo \e[0m"
 cp /home/centos/roboshop-shell-2.0/mongo.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[33mInstalling MongoDB Server\e[0m"

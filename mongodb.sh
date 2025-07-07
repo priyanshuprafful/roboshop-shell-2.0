@@ -6,5 +6,5 @@ dnf install mongodb-org -y &>>/tmp/roboshop.log
 
 # Need to update listen address
 echo -e "\e[33mStarting MongoDB Server\e[0m"
-systemctl enable mongod
-systemctl restart mongod
+systemctl enable mongod &>>/tmp/roboshop.log
+systemctl restart mongod &>>/tmp/roboshop.log

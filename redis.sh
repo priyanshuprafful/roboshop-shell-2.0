@@ -12,4 +12,4 @@ sudo sed -i 's/127\.0\.0\.1/0.0.0.0/g' /etc/redis.conf &>>/tmp/roboshop.log
 
 echo -e "\e[33mStarting Redis Server\e[0m"
 systemctl enable redis &>>/tmp/roboshop.log
-systemctl start redis &>>/tmp/roboshop.log
+systemctl restart redis &>>/tmp/roboshop.log

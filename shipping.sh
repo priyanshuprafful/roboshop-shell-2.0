@@ -23,7 +23,7 @@ mv target/shipping-1.0.jar shipping.jar &>>/tmp/roboshop.log
 
 
 echo -e "\e[33mCopying Shipping Service \e[0m"
-cp /home/centos/robshop-shell-2.0/shipping.service /etc/systemd/system/shipping.service 
+cp /home/centos/roboshop-shell-2.0/shipping.service /etc/systemd/system/shipping.service
 
 
 

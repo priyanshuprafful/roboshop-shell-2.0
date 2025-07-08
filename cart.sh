@@ -18,7 +18,7 @@ mkdir ${app_path}  &>>${log_file}
 
 
 echo -e "${color} Downloading and extracting app content  ${exit_color} "
-curl -o /tmp/ ${component} .zip https://roboshop-artifacts.s3.amazonaws.com/ ${component} .zip &>>${log_file} 
+curl -o /tmp/ ${component} .zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${log_file}
 cd ${app_path} 
 unzip /tmp/ ${component} .zip &>>${log_file} 
 
@@ -28,7 +28,7 @@ cd ${app_path}
 npm install &>>${log_file} 
 
 echo -e "${color} Copying  ${component}  Service File ${exit_color} "
-cp /home/centos/roboshop-shell-2.0/ ${component} .service /etc/systemd/system/ ${component} .service &>>${log_file} 
+cp /home/centos/roboshop-shell-2.0/ ${component} .service /etc/systemd/system/${component}.service &>>${log_file}
 
 
 echo -e "${color} Starting  ${component}  Service ${exit_color} "
@@ -43,4 +43,4 @@ systemctl restart  ${component}  &>>${log_file}
 #dnf install mongodb-org-shell -y &>>${log_file} 
 #
 #echo -e "${color} Loading Schema ${exit_color} "
-#mongo --host mongodb-dev.devopspro.fun <${app_path} /schema/ ${component} .js &>>${log_file} 
+#mongo --host mongodb-dev.devopspro.fun <${app_path} /schema/ ${component} .js &>>${log_file}

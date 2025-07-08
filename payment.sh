@@ -16,7 +16,7 @@ curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.
 cd /app
 unzip /tmp/payment.zip &>>/tmp/roboshop.log
 
-echo -e "\e[3333mInstalling Dependencies\e[0m"
+echo -e "\e[33mInstalling Dependencies\e[0m"
 cd /app
 pip3.6 install -r requirements.txt &>>/tmp/roboshop.log
 

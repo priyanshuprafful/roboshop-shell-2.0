@@ -21,6 +21,15 @@ app_presetup() {
 
 }
 
+systemd_setup() {
+
+    echo -e "${color} Starting ${component} Service ${exit_color}"
+    systemctl daemon-reload &>>${log_file}
+    systemctl enable ${component} &>>${log_file}
+    systemctl start ${component} &>>${log_file}
+
+}
+
 
 nodejs() {
   echo -e "${color} Disabling nodejs module and enabling 18 module ${exit_color}"
@@ -40,10 +49,7 @@ nodejs() {
   cp /home/centos/roboshop-shell-2.0/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
 
 
-  echo -e "${color} Starting ${component} Service ${exit_color}"
-  systemctl daemon-reload &>>${log_file}
-  systemctl enable ${component} &>>${log_file}
-  systemctl start ${component} &>>${log_file}
+  systemd_setup
 
 }
 
@@ -57,6 +63,15 @@ dnf install mongodb-org-shell -y &>>${log_file}
 
 echo -e "${color} Loading Schema ${exit_color}"
 mongo --host mongodb-dev.devopspro.fun <${app_path}/schema/${component}.js &>>${log_file}
+}
+
+mysql_schema_setup() {
+  echo -e "\e[33mInstalling Mysql\e[0m"
+  dnf install mysql -y &>>${log_file}
+
+
+  echo -e "\e[33mLoading Schema\e[0m"
+  mysql -h mysql-dev.devopspro.fun -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log_file}
 }
 
 maven() {
@@ -74,5 +89,9 @@ maven() {
 
   echo -e "${color} Copying ${component} Service ${exit_color} "
   cp /home/centos/roboshop-shell-2.0/${component}.service /etc/systemd/system/${component}.service
+
+  mysql_schema_setup
+
+  systemd_setup
 
 }

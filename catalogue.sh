@@ -35,7 +35,7 @@ systemctl start catalogue &>>/tmp/roboshop.log
 echo -e "\e[33mCopying Mongodb Repo File\e[0m"
 cp mongo.repo /etc/yum.repos.d/mongo.repo &>>/tmp/roboshop.log
 
-echo -e "\e[3333mInstalling mongodb server\e[0m"
+echo -e "\e[33mInstalling mongodb server\e[0m"
 dnf install mongodb-org-shell -y &>>/tmp/roboshop.log
 
 echo -e "\e[33mLoading Schema\e[0m"

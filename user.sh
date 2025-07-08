@@ -30,7 +30,7 @@ cp /home/centos/roboshop-shell-2.0/user.service /etc/systemd/system/user.service
 echo -e "\e[33mStarting user Service\e[0m"
 systemctl daemon-reload &>>/tmp/roboshop.log
 systemctl enable user &>>/tmp/roboshop.log
-systemctl start user &>>/tmp/roboshop.log
+systemctl restart user &>>/tmp/roboshop.log
 
 #echo -e "\e[33mCopying Mongodb Repo File\e[0m"
 #cp /home/centos/roboshop-shell-2.0/mongo.repo /etc/yum.repos.d/mongo.repo &>>/tmp/roboshop.log

@@ -23,7 +23,7 @@ mv target/shipping-1.0.jar shipping.jar &>>/tmp/roboshop.log
 
 
 echo -e "\e[33mCopying Shipping Service \e[0m"
-cp /home/centos/robshop-shell-2.0 /etc/systemd/system/shipping.service &>>/tmp/roboshop.log
+cp /home/centos/robshop-shell-2.0/shipping.service /etc/systemd/system/shipping.service &>>/tmp/roboshop.log
 
 
 
@@ -37,4 +37,4 @@ mysql -h mysql-dev.devopspro.fun -uroot -pRoboShop@1 < /app/schema/shipping.sql 
 echo -e "\e[33mStarting Shipping Service \e[0m"
 systemctl daemon-reload &>>/tmp/roboshop.log
 systemctl enable shipping &>>/tmp/roboshop.log
-systemctl start shipping &>>/tmp/roboshop.log
+systemctl restart shipping &>>/tmp/roboshop.log

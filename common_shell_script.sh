@@ -66,12 +66,12 @@ mongo --host mongodb-dev.devopspro.fun <${app_path}/schema/${component}.js &>>${
 }
 
 mysql_schema_setup() {
-  echo -e "\e[33mInstalling Mysql\e[0m"
-  dnf install mysql -y &>>${log_file}
+   echo -e "\e[33mInstalling Mysql\e[0m"
+   dnf install mysql -y &>>${log_file}
 
 
-  echo -e "\e[33mLoading Schema\e[0m"
-  mysql -h mysql-dev.devopspro.fun -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log_file}
+   echo -e "\e[33mLoading Schema\e[0m"
+   mysql -h mysql-dev.devopspro.fun -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log_file}
 }
 
 maven() {

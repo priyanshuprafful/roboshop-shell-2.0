@@ -6,7 +6,7 @@ echo -e "\e[33mInstalling NodeJs\e[0m"
 dnf install nodejs -y &>>/tmp/roboshop.log
 
 echo -e "\e[33mAdding Roboshop cart\e[0m"
-cartadd roboshop &>>/tmp/roboshop.log
+useradd roboshop &>>/tmp/roboshop.log
 
 echo -e "\e[33mCreating App Directory\e[0m"
 rm -rf /app &>>/tmp/roboshop.log

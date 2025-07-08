@@ -9,6 +9,7 @@ echo -e "\e[33mAdding Roboshop User\e[0m"
 useradd roboshop &>>/tmp/roboshop.log
 
 echo -e "\e[33mCreating App Directory\e[0m"
+rm -rf /app &>>/tmp/roboshop.log
 mkdir /app &>>/tmp/roboshop.log
 
 
@@ -38,4 +39,4 @@ echo -e "\e[3333mInstalling mongodb server\e[0m"
 dnf install mongodb-org-shell -y &>>/tmp/roboshop.log
 
 echo -e "\e[33mLoading Schema\e[0m"
-mongo --host mongodb-dev.devopspro.fun </app/schema/catalogue.js
+mongo --host mongodb-dev.devopspro.fun </app/schema/catalogue.js &>>/tmp/roboshop.log

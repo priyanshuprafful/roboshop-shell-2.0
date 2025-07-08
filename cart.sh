@@ -30,7 +30,7 @@ cp /home/centos/roboshop-shell-2.0/cart.service /etc/systemd/system/cart.service
 echo -e "\e[33mStarting cart Service\e[0m"
 systemctl daemon-reload &>>/tmp/roboshop.log
 systemctl enable cart &>>/tmp/roboshop.log
-systemctl start cart &>>/tmp/roboshop.log
+systemctl restart cart &>>/tmp/roboshop.log
 
 #echo -e "\e[33mCopying Mongodb Repo File\e[0m"
 #cp /home/centos/roboshop-shell-2.0/mongo.repo /etc/yum.repos.d/mongo.repo &>>/tmp/roboshop.log

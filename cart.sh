@@ -9,7 +9,7 @@ dnf module enable nodejs:18 -y &>>${log_file}
 echo -e "${color} Installing NodeJs ${exit_color} "
 dnf install nodejs -y &>>${log_file} 
 
-echo -e "${color} Adding Roboshop  ${component}  ${exit_color} "
+echo -e "${color} Adding Roboshop APPUSER ${exit_color} "
 useradd roboshop &>>${log_file} 
 
 echo -e "${color} Creating App Directory ${exit_color} "

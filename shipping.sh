@@ -1,30 +1,7 @@
-echo -e "\e[33mInstalling Maven \e[0m"
-dnf install maven -y &>>/tmp/roboshop.log
+source common_shell_script.sh
+component=shipping
 
-
-echo -e "\e[33mAdding Roboshop user\e[0m"
-useradd roboshop &>>/tmp/roboshop.log
-
-
-echo -e "\e[33mCreating App Directory \e[0m"
-rm -rf /app &>>/tmp/roboshop.log
-mkdir /app &>>/tmp/roboshop.log
-
-
-echo -e "\e[33mDownloading And Extracting App content\e[0m"
-curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip &>>/tmp/roboshop.log
-cd /app
-unzip /tmp/shipping.zip &>>/tmp/roboshop.log
-
-
-echo -e "\e[33mInstalling Dependencies \e[0m"
-mvn clean package &>>/tmp/roboshop.log
-mv target/shipping-1.0.jar shipping.jar &>>/tmp/roboshop.log
-
-
-echo -e "\e[33mCopying Shipping Service \e[0m"
-cp /home/centos/roboshop-shell-2.0/shipping.service /etc/systemd/system/shipping.service
-
+maven
 
 
 echo -e "\e[33mInstalling Mysql\e[0m"

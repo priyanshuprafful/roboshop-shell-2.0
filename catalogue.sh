@@ -2,6 +2,7 @@ component=catalogue
 color="\e[36m"
 exit_color="\e[0m"
 log_file="/tmp/roboshop.log"
+app_path="/app"
 
 
 echo -e "${color} Disabling nodejs module and enabling 18 module ${exit_color}"
@@ -15,18 +16,18 @@ echo -e "${color} Adding Roboshop User ${exit_color}"
 useradd roboshop &>>${log_file}
 
 echo -e "${color} Creating App Directory ${exit_color}"
-rm -rf /app &>>${log_file}
-mkdir /app &>>${log_file}
+rm -rf ${app_path} &>>${log_file}
+mkdir ${app_path} &>>${log_file}
 
 
 echo -e "${color} Downloading and extracting app content ${exit_color}"
 curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${log_file}
-cd /app
+cd ${app_path}
 unzip /tmp/${component}.zip &>>${log_file}
 
 
 echo -e "${color} Installing Dependencies ${exit_color}"
-cd /app
+cd ${app_path}
 npm install &>>${log_file}
 
 echo -e "${color} Copying ${component} Service File ${exit_color}"
@@ -45,4 +46,4 @@ echo -e "${color} Installing mongodb server ${exit_color}"
 dnf install mongodb-org-shell -y &>>${log_file}
 
 echo -e "${color} Loading Schema ${exit_color}"
-mongo --host mongodb-dev.devopspro.fun </app/schema/${component}.js &>>${log_file}
+mongo --host mongodb-dev.devopspro.fun <${app_path}/schema/${component}.js &>>${log_file}

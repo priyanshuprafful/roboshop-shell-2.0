@@ -7,7 +7,8 @@ dnf install redis -y  &>>/tmp/roboshop.log
 
 
 echo -e "\e[33mUpdate Listen Address\e[0m"
-sudo sed -i 's/127\.0\.0\.1/0.0.0.0/g' /etc/redis.conf &>>/tmp/roboshop.log
+sudo sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf  &>>/tmp/roboshop.log
+#sudo sed -i 's/127\.0\.0\.1/0.0.0.0/g' /etc/redis.conf &>>/tmp/roboshop.log
 
 
 echo -e "\e[33mStarting Redis Server\e[0m"

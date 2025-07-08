@@ -1,36 +1,7 @@
-echo -e "\e[33mDisabling nodejs module and enabling 18 module\e[0m"
-dnf module disable nodejs -y &>>/tmp/roboshop.log
-dnf module enable nodejs:18 -y &>>/tmp/roboshop.log
+source common_shell_script.sh
+component=user
 
-echo -e "\e[33mInstalling NodeJs\e[0m"
-dnf install nodejs -y &>>/tmp/roboshop.log
-
-echo -e "\e[33mAdding Roboshop User\e[0m"
-useradd roboshop &>>/tmp/roboshop.log
-
-echo -e "\e[33mCreating App Directory\e[0m"
-rm -rf /app &>>/tmp/roboshop.log
-mkdir /app &>>/tmp/roboshop.log
-
-
-echo -e "\e[33mDownloading and extracting app content \e[0m"
-curl -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user.zip &>>/tmp/roboshop.log
-cd /app
-unzip /tmp/user.zip &>>/tmp/roboshop.log
-
-
-echo -e "\e[33mInstalling Dependencies\e[0m"
-cd /app
-npm install &>>/tmp/roboshop.log
-
-echo -e "\e[33mCopying user Service File\e[0m"
-cp /home/centos/roboshop-shell-2.0/user.service /etc/systemd/system/user.service &>>/tmp/roboshop.log
-
-
-echo -e "\e[33mStarting user Service\e[0m"
-systemctl daemon-reload &>>/tmp/roboshop.log
-systemctl enable user &>>/tmp/roboshop.log
-systemctl restart user &>>/tmp/roboshop.log
+nodejs
 
 #echo -e "\e[33mCopying Mongodb Repo File\e[0m"
 #cp /home/centos/roboshop-shell-2.0/mongo.repo /etc/yum.repos.d/mongo.repo &>>/tmp/roboshop.log

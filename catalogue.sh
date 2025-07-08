@@ -1,47 +1,48 @@
 component=catalogue
 color="\e[36m"
 exit_color="\e[0m"
+log_file="/tmp/roboshop.log"
 
 
 echo -e "${color} Disabling nodejs module and enabling 18 module ${exit_color}"
-dnf module disable nodejs -y &>>/tmp/roboshop.log
-dnf module enable nodejs:18 -y &>>/tmp/roboshop.log
+dnf module disable nodejs -y &>>${log_file}
+dnf module enable nodejs:18 -y &>>${log_file}
 
 echo -e "${color} Installing NodeJs ${exit_color}"
-dnf install nodejs -y &>>/tmp/roboshop.log
+dnf install nodejs -y &>>${log_file}
 
 echo -e "${color} Adding Roboshop User ${exit_color}"
-useradd roboshop &>>/tmp/roboshop.log
+useradd roboshop &>>${log_file}
 
 echo -e "${color} Creating App Directory ${exit_color}"
-rm -rf /app &>>/tmp/roboshop.log
-mkdir /app &>>/tmp/roboshop.log
+rm -rf /app &>>${log_file}
+mkdir /app &>>${log_file}
 
 
 echo -e "${color} Downloading and extracting app content ${exit_color}"
-curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>/tmp/roboshop.log
+curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${log_file}
 cd /app
-unzip /tmp/${component}.zip &>>/tmp/roboshop.log
+unzip /tmp/${component}.zip &>>${log_file}
 
 
 echo -e "${color} Installing Dependencies ${exit_color}"
 cd /app
-npm install &>>/tmp/roboshop.log
+npm install &>>${log_file}
 
 echo -e "${color} Copying ${component} Service File ${exit_color}"
-cp /home/centos/roboshop-shell-2.0/${component}.service /etc/systemd/system/${component}.service &>>/tmp/roboshop.log
+cp /home/centos/roboshop-shell-2.0/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
 
 
 echo -e "${color} Starting ${component} Service ${exit_color}"
-systemctl daemon-reload &>>/tmp/roboshop.log
-systemctl enable ${component} &>>/tmp/roboshop.log
-systemctl start ${component} &>>/tmp/roboshop.log
+systemctl daemon-reload &>>${log_file}
+systemctl enable ${component} &>>${log_file}
+systemctl start ${component} &>>${log_file}
 
 echo -e "${color} Copying Mongodb Repo File ${exit_color}"
-cp /home/centos/roboshop-shell-2.0/mongo.repo /etc/yum.repos.d/mongo.repo &>>/tmp/roboshop.log
+cp /home/centos/roboshop-shell-2.0/mongo.repo /etc/yum.repos.d/mongo.repo &>>${log_file}
 
 echo -e "${color} Installing mongodb server ${exit_color}"
-dnf install mongodb-org-shell -y &>>/tmp/roboshop.log
+dnf install mongodb-org-shell -y &>>${log_file}
 
 echo -e "${color} Loading Schema ${exit_color}"
-mongo --host mongodb-dev.devopspro.fun </app/schema/${component}.js &>>/tmp/roboshop.log
+mongo --host mongodb-dev.devopspro.fun </app/schema/${component}.js &>>${log_file}

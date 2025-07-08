@@ -1,8 +1,7 @@
+source common_shell_script.sh
+
 component=catalogue
-color="\e[36m"
-exit_color="\e[0m"
-log_file="/tmp/roboshop.log"
-app_path="/app"
+
 
 
 echo -e "${color} Disabling nodejs module and enabling 18 module ${exit_color}"

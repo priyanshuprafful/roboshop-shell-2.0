@@ -37,4 +37,4 @@ mysql -h mysql-dev.devopspro.fun -uroot -pRoboShop@1 < /app/schema/shipping.sql 
 echo -e "\e[33mStarting Shipping Service \e[0m"
 systemctl daemon-reload &>>/tmp/roboshop.log
 systemctl enable shipping &>>/tmp/roboshop.log
-systemctl restart shipping &>>/tmp/roboshop.log
+systemctl start shipping &>>/tmp/roboshop.log

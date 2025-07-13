@@ -95,3 +95,24 @@ maven() {
   systemd_setup
 
 }
+
+python() {
+  echo -e "${color} Installing Python ${exit_color}"
+  dnf install python36 gcc python3-devel -y &>>${log_file}
+
+
+
+
+
+  app_presetup
+
+  echo -e "${color}Installing Dependencies${exit_color}"
+  cd /app
+  pip3.6 install -r requirements.txt &>>/${log_file}
+
+  echo -e "${color}Copying Service File${exit_color}"
+  cp /home/centos/roboshop-shell-2.0/${component}.service /etc/systemd/system/${component}.service
+
+  systemd_setup
+
+}

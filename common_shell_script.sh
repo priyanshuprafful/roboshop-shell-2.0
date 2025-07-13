@@ -39,7 +39,8 @@ systemd_setup() {
 
     echo -e "${color} Copying ${component} Service File ${exit_color}"
     cp /home/centos/roboshop-shell-2.0/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
-    sed -i -e "s/roboshop_app_password/${roboshop_app_password}" /home/centos/roboshop-shell-2.0/${component}.service
+    sed -i -e "s/roboshop_app_password/${roboshop_app_password}/" /etc/systemd/system/${component}.service
+
     exit_status $?
     echo -e "${color} Starting ${component} Service ${exit_color}"
     systemctl daemon-reload &>>${log_file}

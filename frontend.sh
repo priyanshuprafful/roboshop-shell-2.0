@@ -1,8 +1,10 @@
-echo -e "\e[33mInstalling Nginx Server\e[0m"
+source common_shell_script.sh
+
+echo -e "${color}Installing Nginx Server\e[0m"
 dnf install nginx -y &>>/tmp/roboshop.log
 
-echo -e "\e[33mRemoving old app content\e[0m"
-rm -rf /usr/share/nginx/html/* &>>/tmp/roboshop.log
+echo -e "\e[33mRemoving old app content${exit_color}"
+rm -rf /usr/share/nginx/html/* &>>${log_file}
 
 
 echo -e "\e[33mDownloading Frontend Content\e[0m"

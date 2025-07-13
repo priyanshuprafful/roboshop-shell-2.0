@@ -23,6 +23,8 @@ app_presetup() {
 
 systemd_setup() {
 
+    echo -e "${color} Copying ${component} Service File ${exit_color}"
+    cp /home/centos/roboshop-shell-2.0/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
     echo -e "${color} Starting ${component} Service ${exit_color}"
     systemctl daemon-reload &>>${log_file}
     systemctl enable ${component} &>>${log_file}
@@ -45,8 +47,7 @@ nodejs() {
   cd ${app_path}
   npm install &>>${log_file}
 
-  echo -e "${color} Copying ${component} Service File ${exit_color}"
-  cp /home/centos/roboshop-shell-2.0/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
+
 
 
   systemd_setup
@@ -87,8 +88,6 @@ maven() {
   mv target/${component}-1.0.jar ${component}.jar &>>${log_file} 
 
 
-  echo -e "${color} Copying ${component} Service ${exit_color} "
-  cp /home/centos/roboshop-shell-2.0/${component}.service /etc/systemd/system/${component}.service
 
   mysql_schema_setup
 
@@ -110,8 +109,7 @@ python() {
   cd /app
   pip3.6 install -r requirements.txt &>>/${log_file}
 
-  echo -e "${color}Copying Service File${exit_color}"
-  cp /home/centos/roboshop-shell-2.0/${component}.service /etc/systemd/system/${component}.service
+  
 
   systemd_setup
 

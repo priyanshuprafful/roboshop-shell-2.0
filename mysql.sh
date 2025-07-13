@@ -21,6 +21,8 @@ exit_status $?
 
 
 echo -e "\e[33mSetting Password\e[0m"
-mysql_secure_installation --set-root-pass RoboShop@1 &>>/tmp/roboshop.log
+mysql_secure_installation --set-root-pass $1 &>>/tmp/roboshop.log
 #mysql -uroot -pRoboShop@1
 exit_status $?
+
+# $1 RoboShop@1

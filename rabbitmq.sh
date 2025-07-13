@@ -20,6 +20,8 @@ exit_status $?
 
 
 echo -e "\e[33mAdding RabbitMQ User and setting permissions \e[0m"
-rabbitmqctl add_user roboshop roboshop123 &>>/tmp/roboshop.log
+rabbitmqctl add_user roboshop $1 &>>/tmp/roboshop.log
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>/tmp/roboshop.log
 exit_status $?
+
+# $1 roboshop123

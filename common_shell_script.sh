@@ -3,10 +3,22 @@ exit_color="\e[0m"
 log_file="/tmp/roboshop.log"
 app_path="/app"
 
+exit_status() {
+  if [ $? -eq 0 ]; then
+    echo "SUCCESS"
+  else
+    echo "FAILURE"
+  fi
+}
+
 app_presetup() {
 
     echo -e "${color} Adding Roboshop User ${exit_color}"
-    useradd roboshop &>>${log_file}
+    id roboshop &>>${log_file}
+    if [ $? -eq 1 ]; then
+      useradd roboshop &>>${log_file}
+    fi
+    exit_status
 
     echo -e "${color} Creating App Directory ${exit_color}"
     rm -rf ${app_path} &>>${log_file}

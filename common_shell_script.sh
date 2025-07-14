@@ -8,6 +8,7 @@ exit_status() {
     echo "SUCCESS"
   else
     echo "FAILURE"
+    exit 1 # script will stop immediately with exit code 1 
   fi
 }
 

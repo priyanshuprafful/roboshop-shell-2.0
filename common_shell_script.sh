@@ -2,13 +2,21 @@ color="\e[36m"
 exit_color="\e[0m"
 log_file="/tmp/roboshop.log"
 app_path="/app"
+# to run the script as root user we can see , if we give sudo id -u , we get 0 as output which means it is root
+user_id=$(id -u)
+
+if [ $(user_id) -ne 0 ]; then
+  echo "Script Should Run As Root User"
+  exit 1
+fi
+
 
 exit_status() {
   if [ $1 -eq 0 ]; then # $1 because it will come as first argument
     echo "SUCCESS"
   else
     echo "FAILURE"
-    exit 1 # script will stop immediately with exit code 1 
+    exit 1 # script will stop immediately with exit code 1
   fi
 }
 
@@ -99,7 +107,7 @@ mysql_schema_setup() {
 
 
    echo -e "\e[33mLoading Schema\e[0m"
-   mysql -h mysql-dev.devopspro.fun -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log_file}
+   mysql -h mysql-dev.devopspro.fun -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>${log_file}
    exit_status $?
 }
 
